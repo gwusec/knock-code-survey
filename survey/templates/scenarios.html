@@ -1,0 +1,53 @@
+{% extends "base_optout.html" %}
+{% block content %}
+{% load static %}
+<h2> Scenarios </h2>
+<form action="/" method="post">{% csrf_token %}
+  <p>
+    For the remainder of this survey, you will be asked to create
+    Knock Codes for different scenarios.
+  </p>
+
+  <p>
+    Importantly, <span class="text-danger"> you
+      will need to recall these codes later</span>. So choose something that is secure and memorable.
+    <strong> However, we ask that you DO NOT write down your codes or use other aids to help you remember </strong>.
+  </p>
+
+  <ul class="list-unstyled">
+    <li> {% include "radio.html" with field=form.aid %} </li>
+  </ul>
+
+
+  <p>
+    You will be asked to create Knock Codes for the following scenarios.
+  </p>
+  <ul class="list-unstyled">
+    <li>
+      <img src="{% static 'survey/images/unlock.svg' %}"> - <em>Device Unlock</em>
+      Create a Knock Code you would use to <strong><u> unlock</u></strong> your
+      smartphone or tablet.
+    </li> 
+    {% if scenario == "bank" %}
+    <li> <img src="{% static 'survey/images/briefcase.svg' %}"> - <em>Banking App.</em> 
+      Create a Knock Code you would use to secure access
+      to your <strong><u>mobile banking application</u></strong>.
+    </li>
+    <br>
+    {% elif scenario == "shop" %}
+    <li><img src="{% static 'survey/images/shopping-cart.svg' %}"> - <em> Shopping Cart</em>
+      Create a Knock Code you would use to protect your <strong><u>Amazon shopping cart</u></strong>
+    </li>
+    <br>
+    {% endif %}
+  </ul>
+
+  <ul class="list-unstyled">
+    <li> {% include "radio.html" with field=form.scene %} </li>
+  </ul>
+
+</p>
+
+<button class="btn btn-primary" type="submit"> Continue with Survey </button>
+</form>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base_optout.html" %}
+{% block content %}
+{% load static %}
+<h2>Selection</h2>
+
+<script type="text/javascript">var prefix = '{{prefix}}';</script>
+{% include "knocknock.html" %}
+<script type="text/javascript">if(!(Lockr.get("starttime", false))){Lockr.set("starttime", Date.now());}var blacklist=JSON.parse(atob("{{ blacklist }}"));</script>
+<div id="centered-buttons">
+	<input type="button" id="reset_btn" onclick="reset('{% autoescape off %}{{scenario}}{% endautoescape %}')" value="Retry" style="display:inline-block;">
+	<input type="button" id="next_btn" onclick="entry_next()" value="Next" style="display:inline-block;" disabled="true">
+</div>
+
+<form id="resultForm" action="/" method="post">{% csrf_token %}
+  <input type="hidden" id="code" name="code">
+  <input type="hidden" id="time" name="time">
+  <input type="hidden" id="taps" name="taps">
+  <input type="hidden" id="hitblacklist" name="hitblacklist">
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="blacklistModal" tabindex="-1" role="dialog" aria-labelledby="blacklistModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="padding: 0px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">This Knock Code <br>Can Be Easily Guessed</h5>
+            </div>
+            <div class="modal-footer" id="confirmModal" style="padding: 0px;">
+                <button type="button" class="btn btn-primary" id="buttonChangeLong" data-dismiss="modal" style="display: block;" onclick="reset('{{scenario}}')">Change Code</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">document.getElementById("next_btn").scrollIntoView(false);</script>
+{% endblock %}

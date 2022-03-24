@@ -1,0 +1,23 @@
+{% extends "base_optout.html" %}
+{% block content %}
+
+<h2> Device Usage Questions </h2>
+<p>
+  When referring to "mobile devices" throughout this survey,
+  consider these to include smartphones, such
+  as iPhone and Android phones. Tablet computers, traditional laptop
+  computers, two-in-one computers, like the Microsoft Surface, or
+  e-readers, like the Amazon Kindle, are not considered mobile
+  devices for the purposes of this survey.
+</p>
+<form action="/" method="post">{% csrf_token %}
+  <ol>
+    <li> {% include "radio.html" with field=form.num %} </li>
+    <li> {% include "radio.html" with field=form.brand %} </li>
+    <li> {% include "radio.html" with field=form.no %} </li>
+    <!-- <li> {% include "radio.html" with field=form.usage %} </li> -->
+    <li> {% include "radio.html" with field=form.curlock %} </li>
+  </ol>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

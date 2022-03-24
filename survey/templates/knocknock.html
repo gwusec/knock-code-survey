@@ -1,0 +1,44 @@
+{% load static %}
+<script src="{% static 'survey/Knock.js' %}"></script>
+<link rel="stylesheet" href="{% static 'survey/style.css' %}">
+
+<!-- Set Knock Code Button -->
+<div class="knock-container" id="knock_container">
+
+	{% if icon %}
+	<div class='text centered' id="scenario_icon" style="position: unset; min-height: auto; margin-top: 10px">
+		<img src='{{icon}}'>
+	</div>
+	{% endif %}
+	<div class='text centered' id="scenario_text" style="position: unset; min-height: auto; height: auto">
+		{% autoescape off %}
+			{{scenario}}
+		{% endautoescape %}
+	</div>
+	<div id="knock-code-images" style="min-height: 50px; text-align: center; padding-top: 20px;"></div>
+        
+        <script>$("#knock_container").height($("#phoneImage").height())</script>
+        
+	<!-- Make Square -->
+	<div class='square'>
+	    <div class='squareContent'>
+		<table>
+		    <tr>
+			<td><button id="knock-button" name="knock1" ontouchend="knock('0', '{% autoescape off %}{{scenario}}{% endautoescape %}', '{% autoescape off %}{{next_text}}{% endautoescape %}', '{% autoescape off %}{{dynamic_instruction}}{% endautoescape %}', '{{treatment}}')"></button></td>
+			<td><button id="knock-button" name="knock2" ontouchend="knock('1', '{% autoescape off %}{{scenario}}{% endautoescape %}', '{% autoescape off %}{{next_text}}{% endautoescape %}', '{% autoescape off %}{{dynamic_instruction}}{% endautoescape %}', '{{treatment}}')"></button></td>
+		    </tr>
+		    <tr>
+			<td><button id="knock-button" name="knock3" ontouchend="knock('2', '{% autoescape off %}{{scenario}}{% endautoescape %}', '{% autoescape off %}{{next_text}}{% endautoescape %}', '{% autoescape off %}{{dynamic_instruction}}{% endautoescape %}', '{{treatment}}')"></button></td>
+			<td><button id="knock-button" name="knock4" ontouchend="knock('3', '{% autoescape off %}{{scenario}}{% endautoescape %}', '{% autoescape off %}{{next_text}}{% endautoescape %}', '{% autoescape off %}{{dynamic_instruction}}{% endautoescape %}', '{{treatment}}')"></button></td>
+		    </tr>
+		    {% if treatment == "big" %}
+		    <tr>
+			<td><button id="knock-button" name="knock5" ontouchend="knock('4', '{% autoescape off %}{{scenario}}{% endautoescape %}', '{% autoescape off %}{{next_text}}{% endautoescape %}', '{% autoescape off %}{{dynamic_instruction}}{% endautoescape %}', '{{treatment}}')"></button></td>
+			<td><button id="knock-button" name="knock6" ontouchend="knock('5', '{% autoescape off %}{{scenario}}{% endautoescape %}', '{% autoescape off %}{{next_text}}{% endautoescape %}', '{% autoescape off %}{{dynamic_instruction}}{% endautoescape %}', '{{treatment}}')"></button></td>
+		    </tr>
+		    <script type="text/javascript">$("td").css("height", "33%");</script>
+			{% endif %}
+		</table>
+	    </div>
+	</div>
+</div>

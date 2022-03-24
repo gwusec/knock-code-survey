@@ -1,0 +1,25 @@
+{% extends "base_optout.html" %}
+{% block content %}
+
+<p>
+    An error occured in submitting. If you feel that this is an error, <div class="text-danger"> <strong> RELOAD THIS HIT </strong> and try submitting again </div>
+</p>
+
+<p>
+    If the problem persists, please contact the requester and include
+    the following debugging information. You should get a reply within
+    24 hours.
+</p
+
+<code class="w-auto alert-dark">
+error=[{{error}}]
+startcode=[{{startcode}}]
+fincode=[{{fincode}}]
+assignmentId=[{{assignmentId}}]
+hitId=[{{hitId}}]
+workerId=[{{workerId}}]
+turkSubmitTo[{{turkSubmitTo}}]
+</code>
+
+{% endblock %}
+

@@ -1,0 +1,14 @@
+{% extends "base_optout.html" %}
+{% block content %}
+{% load static %}
+
+            <h2> Practice Entering Knock Codes </h2>
+            
+            {% include "knocknock.html" %}
+            <script> practice() </script>
+
+             <form id="resultForm" action="/" method="post">{% csrf_token %}
+                <input type="hidden" id="code" name="code">
+             </form>
+
+{% endblock %}

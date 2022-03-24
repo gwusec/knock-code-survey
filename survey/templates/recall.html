@@ -1,0 +1,23 @@
+{% extends "base_optout.html" %}
+{% block content %}
+{% load static %}
+<h2>Recall</u></h2>
+
+<script type="text/javascript">var prefix = '{{prefix}}';</script>
+{% include "knocknock.html" %}
+<script type="text/javascript">if(!(Lockr.get("starttime", false))){Lockr.set("starttime", Date.now());}</script>
+<script type="text/javascript">window.onload = recall_check_attempts;</script>
+<div id="centered-buttons">
+    <input type="button" id="reset_btn" onclick="reset('{% autoescape off %}{{scenario}}{% endautoescape %}')" value="Retry" style="display:inline-block;">
+    <input type="button" id="next_btn" onclick="recall_ok('{% autoescape off %}{{knockcode}}{% endautoescape %}', '{% autoescape off %}{{scenario}}{% endautoescape %}')" value="OK" style="display:inline-block;" disabled="true">
+    <input type="button" id="cancel_recall_btn" onclick="recall_continue('True')" value="Continue" style="display:none;">
+    <input type="button" id="continue_recall_btn" onclick="recall_continue('False')" value="Continue" style="display:none;">
+</div>
+<form id="resultForm" action="/" method="post">{% csrf_token %}
+  <input type="hidden" id="forgot" name="forgot" value="False">
+  <input type="hidden" id="time" name="time">
+  <input type="hidden" id="attempts" name="attempts">
+  <input type="hidden" id="taps" name="taps">
+</form>
+<script type="text/javascript">document.getElementById("next_btn").scrollIntoView(false);</script>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base_optout.html" %}
+{% block content %}
+{% load static %}
+
+<h2> What are Knock Codes? </h2>
+
+<p> Knock Codes are an authentication method used to <em> unlock </em> your
+  smartphone, much like a PIN. To unlock the phone, the user enters their
+  knock Code by tapping different regions (or quadrants) of {% if treatment == "big" %}2x3{% else %}2x2{% endif %} grid on
+  the smartphone display. The grid may or may not be displayed at the time of
+  entry, for example, below is a video of someone entering a Knock Code
+  without a grid displayed.
+  
+  <div class="text-center">
+    <img src="{% static '/survey/images/knockknock_sample.gif' %}"  class="img-fluid text-center" style="width:500px" alt="Video Credit: Android Authority https://www.youtube.com/watch?v=tPYypLe8LEU">
+  </div>
+</p>
+<p>
+  As part of this survey, you will be asked to select your own Knock Codes
+  using an on-screen approximation of a smartphone. You will enter your codes by
+  clicking on different regions of a {% if treatment == "big" %}2x3{% else %}2x2{% endif %} grid. Below is an image
+  of the {% if treatment == "big" %}2x3{% else %}2x2{% endif %} grid and smartphone approximation.
+  <div class="text-center">
+    {% if treatment == "big" %}
+      <img src="{% static '/survey/images/knockknock_entry_big.png' %}"  class="img-fluid text-center" style="max-width:200px">
+    {% else %}
+      <img src="{% static '/survey/images/knockknock_entry_small.png' %}"  class="img-fluid text-center" style="max-width:200px">
+    {% endif %}
+  </div>
+  
+</p>
+
+<p> There are some rules! When selecting a Knock Code it <u>must</u>:
+  <ol>
+    <li> Use <em>at least</em> 3 different regions of the grid.</li>
+    <li> Use <em> at least</em> 6 total knocks. </li>
+  </ol>
+</p>
+
+<!-- 
+     <p> For example, the following entries would be <u> invalid</u>
+       <ul>
+         <li> Not enough quandrants [ADD GIF]</li>
+         <li> Not enough knocks [ADD GIF]</li>
+       </ul>
+     </p>
+     -->
+<p> 
+  On the next page, you will have a chance to practice entering
+  Knock Codes. After which, you will proceed with the rest
+  of the survey.
+</p>
+
+<form action="/" method="post">{% csrf_token %}
+  <button  class="btn btn-primary" type="submit"> Continue to Practice</button>
+</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base_optout.html" %}
+{% block content %}
+<h2> Thank you for taking the survey! </h2>
+
+<p> Return to MTurk and enter the follow <strong> finish code </strong> to prove you've completed the work.  </p>
+
+<pre id="finishcolor" style="font-size: 2em;">{{fincode}}</pre>
+
+<p> <em>(Hint: if you reload the HIT page, the finish code will automatically propogate.)</em></p>
+<script>
+  Lockr.flush();
+  var startcode = $.trim($("#finishcolor").html());
+  $("#finishcolor").html("");
+  for ( var i = 0, l = startcode.length; i < l; i++ ) {
+    if (!isNaN(parseInt(startcode[i], 10))) {
+      $("#finishcolor").append('<span style="color:#2BBBAD;">'+startcode[i]+'</span>')
+    } else {
+      $("#finishcolor").append('<span style="color:#ff4444;">'+startcode[i]+'</span>')
+    }
+  }
+</script>
+{% endblock %}

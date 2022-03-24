@@ -1,0 +1,16 @@
+{% extends "base_optout.html" %}
+{% block content %}
+{% load static %}
+<h5> Thinking about the Knock Code you just chose, answer the following questions. </h5>
+<form action="/" method="post">{% csrf_token %}
+  <ol>
+    <li> {% include "radio.html" with field=form.security %} </li>
+    <li> {% include "radio.html" with field=form.difficulty %} </li>
+    <li> {% include "textarea.html" with field=form.strat_secure %} </li>
+    <li> {% include "textarea.html" with field=form.strat_remember %} </li>
+
+
+  </ol>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

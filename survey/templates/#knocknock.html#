@@ -1,0 +1,49 @@
+{% load static %}
+xb<script src="{% static 'survey/Knock.js' %}"></script>
+<link rel="stylesheet" href="{% static 'survey/style.css' %}">
+
+<div class="text-center" style="margin:auto;max-width:450px">
+    <div class="alert" role="alert" id="codeFeedback" style="height:4em">
+        <!-- Will be filled with messages -->
+    </div>
+</div>
+
+<!-- Set Knock Code Button -->
+<div class="knock-container" id="knock_container">
+
+    
+    <div id='phoneImage' style="position: absolute; z-index: 1; justify-content: center;">
+	<img src = "{% static 'survey/images/LG.jpg' %}" style="position: absolute; z-index: 2; max-width:150%; max-height:100%; object-fit: contain;" />
+	<div class='text centered'>
+            <center>
+                {% autoescape off %}
+		{{scenario}}
+                {% endautoescape %}
+	    </center>
+	</div>
+        
+        <script>$("#knock_container").height($("#phoneImage").height())</script>
+        
+	<!-- Make Square -->
+	<div class='square'>
+	    <div class='squareContent'>
+		<table>
+		    <tr>
+			<td><button id="knock-button" name="knock1" onclick="knock('0')"></button></td>
+			<td><button id="knock-button" name="knock2" onclick="knock('1')"></button></td>
+		    </tr>
+		    <tr>
+			<td><button id="knock-button" name="knock3" onclick="knock('2')"></button></td>
+			<td><button id="knock-button" name="knock4" onclick="knock('3')"></button></td>
+		    </tr>
+		</table>
+	    </div>
+	</div>
+        
+	<div class='buttonOverlay'>
+	    <div id="submission">
+		<input type="button" id="knock_btn" value="Save Code" style="display:inline-block;">
+	    </div>
+        </div>
+    </div>
+</div>

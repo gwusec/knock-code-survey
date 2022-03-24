@@ -1,0 +1,7 @@
+{% extends "base_optout.html" %}
+{% block content %}
+<form action="/" method="post">{% csrf_token %}
+  {% include "radio.html" with field=form.honest %} </li>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

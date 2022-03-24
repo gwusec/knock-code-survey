@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2> Enter the Start Code </h2>
+<form action="/" method="post">{% csrf_token %}
+  <div class="row">
+
+    <div class="col-sm-2">
+      {% if startcode %}
+      <input type="text" class="form-control" id="startcode" value="{{startcode}}" name="startcode">
+      {% else %}
+      <input type="text" class="form-control" id="startcode" name="startcode">
+      {% endif %}
+    </div>
+    <div class="col-sm-2">
+      <input class="btn btn-outline-primary" type="submit" value="Submit" >
+    </div>
+  </div>
+  {% if invalid %}
+  <div class="alert alert-warning" role="alert">
+    The start code you entered is <strong> invalid </strong> or <strong> previously used </strong>, please try again.
+  </div>
+  {% endif %}
+  <small id="startcodeHelp" class="form-text text-muted"
+         <p> You must accept the HIT at Amazon Mechanical Turk first to retrieve a start code.</p>
+  <p><strong> If you accepted this HIT and do not wish to take the survey, please return it at Amazon Mechanical Turk. </strong></p>
+</form>
+{% endblock %}

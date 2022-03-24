@@ -1,0 +1,213 @@
+/* Written by Genry Krichevsky
+   genry@svegasoft.com			*/
+
+.border {
+    border: 3px solid #007bff !important;
+}
+
+.btn-outline-primary {
+    margin: 10px !important;
+}
+
+#buttonChangeLong {
+    margin: 0px;
+    border-top: 1px solid #BFBFBF;
+    height: 100%;
+    width: 100%;
+    text-transform: none;
+    font-size: 14pt;
+    background-color: #00337F;
+    color: #fff;
+    border-bottom: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    font-weight: bold;
+}
+
+#centered-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#cancel_recall_btn, #continue_confirm_btn, #continue_recall_btn {
+    min-height: 40px;
+    min-width: 1em;
+    width: 16em;
+    max-width: 90%;
+    margin: 3px;
+}
+
+#cancel_btn, #continue_practice_btn, #knock_btn, #next_btn, #reset_btn {
+    min-height: 40px;
+    min-width: 1em;
+    width: 8em;
+    max-width: 45%;
+    margin: 3px;
+}
+
+h5.modal-title {
+    font-weight: none;
+}
+
+.modal-body {
+    padding-top: 0px;
+}
+
+.modal-content, .modal-dialog, .modal-dialog-centered {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    max-width: 95%;
+}
+
+.modal-header {
+    text-align: center;
+    border-bottom: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+}
+
+.modal-header, .modal-footer {
+    display: initial;
+}
+
+#next_btn {
+    background-color: #cccccc;
+    border: 1px solid #999999;
+    color: #666666;
+}
+
+#inputCode {
+    border: none;
+    font-size: 5em;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#inputCode:focus {
+    outline:none;
+}
+
+.knock-container {
+    max-width: 300px;
+    margin: auto;
+}
+
+.progress {
+    border-radius: 0px;
+    height: 15px;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.progress-bar {
+    background-color: #32CD32;
+}
+   
+table{
+    table-layout:fixed;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td{
+    height: 50%;
+}
+
+*:focus {
+    outline: none;
+}
+
+#knock-button {
+    color: transparent; 
+    background-color: transparent; 
+    border-color: light-gray; 
+    cursor: default;
+    width: 100%;
+    height: 100%;
+    outline: none;
+}
+
+#knock-button:active {
+    background-color: grey;
+    border-color: transparent; 
+    width: 100%;
+    height: 100%;
+}
+
+.knock-image {
+    max-height: 26px;
+    max-width: 26px;
+    margin-right: 2px;
+    margin-left: 2px;
+    margin-bottom: 5px;
+}
+
+.square{
+    position: relative;
+    top: 10%;
+    height: 65%;
+    z-index: 3;
+}
+
+.square:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+	z-index: 3;
+}
+.squareContent{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.text{
+	position: relative;
+	top: 8%;
+	left: 5%;
+	z-index: 3;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.buttonOverlay{
+	position: relative;
+	top: 10%;
+	left: 5%;
+	z-index: 3;
+}
+
+.confirmButtonOverlay{
+	position: relative;
+	top: 9%;
+	left: 5%;
+	z-index: 3;
+}
+
+#phoneImage {
+    width: 300px;
+	height: 673px;
+	position: absolute;
+}
+input[type=submit], input[type=button]
+{
+	background-color: gray;
+	color: white;
+	padding: 4px 5px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;	
+}
+
+#submission {
+	text-align: center;
+	padding: 5px;
+}

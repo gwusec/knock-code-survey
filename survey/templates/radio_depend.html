@@ -1,0 +1,57 @@
+{% load split %}
+
+
+<div id="{{field.name}}" style="display:none">
+<li> {% include "radio.html" with field=field %} </li>
+</div>
+
+<script>
+    //initial un-require the field
+    {% for opt in field %}
+    $("#{{opt.id_for_label}}").prop("required",false);
+    {% endfor %}
+
+//define the selection handler
+{{field.name}}_handler = function(){
+    if(this.checked){
+        $("#{{field.name}}").css("display","inherit");
+        {% for opt in field %}
+        $("#{{opt.id_for_label}}").prop("required",true);
+        {% endfor %}
+    }else{
+        $("#{{field.name}}").css("display","none");
+        {% for opt in field %}
+        $("#{{opt.id_for_label}}").prop("required",false);
+        $("#{{opt.id_for_label}}").prop("checked",false);
+        {% endfor %}
+
+        var dependents = eval({{ dependents|split:" "  | safe}});
+        for(var i=0;i<dependents.length;i+=1){
+            var j=0;
+            while(true){
+                var c = $("#id_"+dependents[i]+"_"+j);
+                //console.log("#id_"+dependents[i]+"_"+j+ " " + c.is(":checked"));
+                if(c.length == 0) break;
+                c.prop("required",false);
+                c.prop("checked",false);
+                j+=1;
+                //console.log("#id_"+dependents[i]+"_"+j+ " " + c.is(":checked"));
+            }
+            $("#"+dependents[i]).css("display","none");
+        }
+    }
+}
+
+//setup handler
+$('input[name={{depend}}]').on('click',function(){
+    //trigger select for all in the group
+    $("input[name="+$(this).attr("name")+"]").each(function(i,obj){$(obj).trigger("select");});
+    //second trigger to move highlight to the most recent clicked
+    $(this).each(function(i,obj){$(obj).trigger("select");});
+});
+
+//setup the select handler
+checked = $("#id_{{depend}}_{{choice}}");
+checked.on("select",{{field.name}}_handler);
+checked.trigger("select"); //trigger it in case of page reload
+</script>

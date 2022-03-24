@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<h1> Thank you for your work! </h1>
+<!-- Automatically just submit this form -->
+<form action="{{action}}" method="post" id="submitForm">
+    
+    <input type="hidden" name="assignmentId" value="{{assignmentId}}">
+    <input type="hidden" name="startcode" value="{{startcode}}">
+    <input type="hidden" name="fincode" value="{{fincode}}">
+</form>
+
+<script>
+ //Do submission after 1 second
+ function doSubmit(){
+     document.getElementById("submitForm").submit();
+ }
+ setTimeout(doSubmit, 1500);
+</script>
+
+{% endblock %}

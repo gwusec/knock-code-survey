@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<script>
+  $("#moreinfo").addClass("show");
+  $("#moreinfo").removeClass("collapse");
+</script>
+
+<p>
+  We are conducting an academic survey about Knock Codes, a
+  passcode interface on LG smartphones for locking and unlocking the
+  device, like PINs or Android Patterns. The survey will ask you to
+  create up to three Knock Codes under different scenarios. You
+  will be <b>compensated $1.25</b> for your work. We have
+  found that it takes approximately <b> 10 minutes on average </b> to
+  complete this Human Intelligence Task (HIT).
+</p>
+
+<p> Importantly: <strong> You must take this survey using an <u> Android </u> smartphone and not on your laptop/desktop computer or tablet.</strong> Not following these directions 
+  may affect your ability to complete the work. <br> 
+  <div class="alert alert-danger" role="alert"><strong><warning style="font-size: 40px;">&#9888;</warning>Unfortunately, this survey does not function properly on iPhones. You must complete the survey on an Android smartphone, or return the HIT.<warning style="font-size: 40px;">&#9888;</warning></strong></div></p>
+
+<p>
+  <div class="border border-3 border-primary rounded p-1">
+    <ul class="list-unstyled">
+        <li> <h2> &#9312 </h2></li>
+
+        {% if accepted and submitted %}
+        <li> <div class="text-danger"> <strong> YOU HAVE ALREADY COMPLETED THIS HIT</strong>, either in this or another posting. Please return the HIT </div> </li>
+
+        {% elif otherHit and not otherExempt %}
+        <li> <div class="text-danger"> <strong> YOU HAVE ALREADY  ACCEPTED THIS HIT IN ANOTHER POSTING</strong>. Please return the HIT. You cannot submit twice. </div> </li>
+
+        {% elif not accepted %}
+        <li> Using your smartphone, take the survey here: <a href="/" target="_blank">knockcodes.usnacs.org</a> </li>
+        <li> On the login page, enter this start code: <div class="text-danger"> YOUR START CODE WILL APPEAR ONCE YOU ACCEPT THE HIT</div></li>
+        
+        {% elif accepted and not submitted %}
+    
+        <li> Using your smartphone, take the survey here: <a href="/?startcode={{startcode}}" target="_blank">knockcodes.usnacs.org</a> </li>
+        <li> On the login page, enter this start code: <font id="finishcolor" style="font-size: 1em;">{{startcode}}</font></li>
+        <li> Or scan this QR code: 
+        <div id="qrcode"></div>
+        <script src="{% static 'survey/qrcode.min.js' %}"></script>
+        <script>new QRCode(document.getElementById("qrcode"), {text:"{{qrCodeUrl}}/?startcode={{startcode}}",width:96,height:96});</script>
+        </li>
+    {% endif %}
+    </ul>
+  </div> 
+</p>
+<p>
+  <div class="border border-3 border-primary rounded p-1">
+    <ul class="list-unstyled">
+        <li> <h2> &#9313 </h2></li>
+        
+           <li>  Once you complete the survey in part <font size="5">&#9312</font>, you will receive a <strong> finish code</strong>. Come back to this page and submit your finish code to prove completion of your work.</li>
+           {% if otherHit and not otherExempt %}
+           <li> <div class="text-danger"> <strong> YOU HAVE ALREADY  ACCEPTED THIS HIT IN ANOTHER POSTING</strong>. Please return the HIT. You cannot submit twice. </div> </li>
+
+         {% elif not accepted %}
+
+           <form> 
+               <li> <hr style="height:5px; visibility:hidden;"></li>
+               <li><div class="col-sm-2 m-1"><input type=text class="form-control" id="fincode" name="fincode" value="SAMPLECODE" readonly> </div></li>     
+               <li><div class="col-sm-2 m-1">  <input class="btn btn-outline-primary" type="button" value="Submit"> </div></li>
+           </form>
+           {% elif accepted and not submitted%}
+           
+           <form method="post" action="/mturk"> {% csrf_token %} 
+               <input type="hidden" name="assignmentId" value="{{assignmentId}}">
+               <input type="hidden" name="workerId" value="{{workerId}}">
+               <input type="hidden" name="hitId" value="{{hitId}}">
+               <input type="hidden" name="turkSubmitTo" value="{{turkSubmitTo}}">
+               <input type="hidden" name="startcode" value="{{startcode}}">
+               <li> <hr style="height:5px; visibility:hidden;"></li>
+               <li> <div class="col-sm-2 m-1"> <input type=text class="form-control" id="fincode" name="fincode" value="{{fincode}}"> </div></li>
+               <li> <div class="col-sm-2 m-1"><input class="btn btn-outline-primary" type="submit" value="Submit"> </div></li>
+           </form>
+           <li><em> HINT: Reload this page once you complete part <font size="5">&#9312</font> and your finish code will auto-propagate.</em></li>
+           
+           {% elif accepted and submitted %}
+           <li>
+               <div class="text-danger"> YOU HAVE ALREADY COMPLETED THIS HIT, either in this or another posting. Please return the HIT </div>
+           </li>
+           {% endif %}
+    </ul>
+  </div>
+</p>
+
+<p>
+  Due to the nature of the work, <strong> you may only complete the
+    HIT once, even across multiple posting of the HIT</strong>. If you accept the HIT and are notified
+  that your work will not be accepted, please return the HIT. <b>
+    FAILURE TO FOLLOW THIS INSTRUCTION MAY RESULT IN WORK BEING EXCLUDED
+    AND/OR A <u>REJECTION</u>.</b>
+</p>
+
+<p> Please feel free to contact the requester if you have any questions
+  or concerns. A prompt reply should occur within 24 hours or sooner.</p>
+<script>
+  var startcode = $.trim($("#finishcolor").html());
+  $("#finishcolor").html("");
+  for ( var i = 0, l = startcode.length; i < l; i++ ) {
+    if (!isNaN(parseInt(startcode[i], 10))) {
+      $("#finishcolor").append('<span style="color:#2BBBAD;">'+startcode[i]+'</span>')
+    } else {
+      $("#finishcolor").append('<span style="color:#ff4444;">'+startcode[i]+'</span>')
+    }
+  }
+</script>
+{% endblock %}
+

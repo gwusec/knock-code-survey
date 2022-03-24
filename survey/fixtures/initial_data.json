@@ -1,0 +1,32 @@
+[
+  {
+    "model": "survey.blocked_treatments",
+    "fields": {
+      "name": "con"
+    }
+  },
+  {
+    "model": "survey.blocked_treatments",
+    "fields": {
+      "name": "bla"
+    }
+  },
+  {
+    "model": "survey.blocked_treatments",
+    "fields": {
+      "name": "big"
+    }
+  },
+  {
+    "model": "survey.blocked_scenarios",
+    "fields": {
+      "name": "bank"
+    }
+  },
+  {
+    "model": "survey.blocked_scenarios",
+    "fields": {
+      "name": "shop"
+    }
+  }
+]

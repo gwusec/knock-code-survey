@@ -1,0 +1,17 @@
+{% extends "base_optout.html" %}
+{% block content %}
+
+<h2> Demographic Questions </h2>
+<form action="/" method="post">{% csrf_token %}
+  <ol>
+    <li> {% include "radio.html" with field=form.age %} </li>
+    <li> {% include "radio.html" with field=form.gender %} </li>
+    <li> {% include "radio.html" with field=form.handed %} </li>
+    <li> {% include "radio.html" with field=form.locale %} </li>
+    <li> {% include "radio.html" with field=form.education %} </li>
+    <li> {% include "radio.html" with field=form.attention %} </li>
+    <li> {% include "radio.html" with field=form.tech %} </li>
+  </ol>
+  <input class="btn btn-outline-primary" type="submit" value="Submit" >
+</form>
+{% endblock %}

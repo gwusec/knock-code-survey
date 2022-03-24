@@ -1,0 +1,33 @@
+<strong>{{field.label | safe}}</strong>
+{% if field.errors %}
+<div class="alert alert-danger" role="alert">
+    {{field.errors}}
+</div>
+{% endif%}
+{% for opt in field %}
+<div class="form-check">
+  {{opt.tag}}
+  {% if opt.choice_label == "OTHER" %}
+  <script>
+    document.getElementById('{{opt.id_for_label}}').checked=false;
+
+    function {{field.name}}_onchange(){
+    document.getElementById('{{opt.id_for_label}}').value=document.getElementById('{{field.name}}.other').value;
+    document.getElementById('{{opt.id_for_label}}').checked=true;
+    if(document.getElementById('{{opt.id_for_label}}').value == ""){
+       document.getElementById('{{opt.id_for_label}}').checked=false;
+    }
+   } 
+  </script>
+    <label class="form-check-label" for="{{opt.id_for_label}}">
+      <input type="text" class="form-control" id="{{field.name}}.other" placeholder="Other"
+             onchange="{{field.name}}_onchange()">
+    </label> 
+    {% else %}
+    <label class="form-check-label" for="{{opt.id_for_label}}">
+        {{ opt.choice_label}}
+    </label>
+    {% endif %}
+</div>
+{% endfor %}
+<br>

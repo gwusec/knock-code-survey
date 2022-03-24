@@ -1,0 +1,147 @@
+{% extends "base_optout.html" %}
+{% block content %}
+
+{% if invalid %}
+<div class="alert alert-warning" role="alert">
+  You must either consent or <em> not </em> consent to the survey before proceeding. 
+
+</div>
+{% endif %}
+
+<h2> PARTICIPANT INFORMED CONSENT FORM </h2>
+
+<p> The following information is provided to inform you about the research
+  project and your participation in it. Your participation in this research study
+  is voluntary. You are free to withdraw from this study at any time without
+  penalty. </p>
+
+<ol>
+  <li> <strong> Purpose of the study: </strong>
+
+    <p>  You are being asked to participate in an academic
+      survey about Knock Codes, a passcode interface on
+      LG smartphones for locking and unlocking the device,
+      like PINs or Android Patterns. We are interested in
+      learning how users select and remember knock
+      codes.
+    </p>
+  </li>
+  
+  <li> <strong> Description of procedures to be followed and approximate time
+      duration involved for the participants: </strong>
+
+    <p> You will be asked to complete a short survey that
+      requires you to generate a set of Knock Codes
+      under a security scenario, such as locking your device
+      or protecting your bank account.
+    </p>
+    <p>
+      A Knock Code is
+      an mobile authentication system used to lock/unlock LG
+      smartphone devices. If you are unfamiliar with
+      Knock Codes, we will explain them to you in more
+      detail in the course of the survey.
+    </p>
+
+    <p>
+      The expect time of the survey is 10 minutes, and no more than 1 hour. You will
+      be compensated <strong> $1.25 </strong> for your
+      participation. 
+    </p>
+  </li>
+  
+  <li> <strong> Expected costs </strong>:
+
+    <p>There are no expected costs to your to participation.
+    </p>
+  </li>
+  <li> <strong> Description of the discomfort, inconveniences, and/or risks that can be
+      reasonably expected as a result of participation in this study: </strong>
+
+    <p>There are no foreseeable risks for participating in this research.
+    </p>
+  </li>
+  <li> <strong> Anticipated benefits from this study: </strong>
+
+    <p>
+      The benefits of participation are to further research in
+      mobile authentication, which in part will improve the
+      security of mobile device users. 
+    </p>
+  </li>
+  
+  <li><strong>  Compensation for participation: </strong>
+    <p>
+      You will be compensated $1.25 for an honest completion
+      of this survey.
+    </p>
+  </li>
+  <li> <strong> Circumstances under which the Principal Investigator may withdraw you from
+      study participation:</strong>
+
+    <p>
+      Your results may be withdrawn or rejected from this survey for the following
+      reasons: i) Not following directions of the survey ii) Providing an invalid
+      completion code iii) Failing attention tests and screening questions that render
+      you unqualified
+    </p>
+
+  <li> <strong> What happens if you choose to withdraw from study participation: </strong>
+
+    <p> You may withdraw from study participation at any
+      point prior to submitting your completion code,
+      without prejudice. You may either opt-out of the
+      survey or return the HIT. Participation will be
+      considered incomplete if you abandon the HIT.
+    </p>
+  </li>
+  <li> <strong> Contact Information. </strong>
+
+    <p>This research is being conducted by Dr. Adam J. Aviv in the Computer Science
+      Department at the United States Naval Academy.  He may be reached at
+      aviv@usna.edu for questions or to report a research related problem. The
+      Department Chair, CAPT Michael Bilzor can be reached at bilzor@usna.edu.  You
+      may contact the USNA HRPP Office at 410-293-2533 or hrppoffice@usna.edu if you
+      have questions or comments regarding your rights as a participant in the
+      research.
+    </p
+      >
+    <p> This research has been reviewed according to the USNA’s procedures governing
+      your participation in this research.
+    </p>
+  </li>
+  <li> <strong> Confidentiality. </strong>
+
+    <p> All efforts will be made to keep the personal
+      information in your research record private, but
+      complete confidentiality cannot be promised. Your
+      information may be shared with the USNA
+      Institutional Review Board, USNA Human Research
+      Protection Program Office, or the Department of the
+      Navy for Human Research Protections.  
+    </p>
+    
+  </li>
+</ol>
+
+<p> STATEMENT BY PERSON AGREEING TO PARTICIPATE IN THIS STUDY I have
+  read this informed consent document and the material contained in it has been
+  explained to me. I understand each part of the document, all my questions have
+  been answered, and I freely and voluntarily choose to participate in this study.
+  I can choose to withdraw from this research project at any time without penalty.
+</p>
+
+<form action="/" method="post" style="margin:1em;border-style: solid; border-color:black"> {% csrf_token %}
+
+  <div class="form-check form-check-inline" style="margin:1em">
+    <input class="form-check-input" type="radio" name="consent" id="inlineRadio1" value="yes">
+    <label class="form-check-label" for="inlineRadio1"> <b>I consent</b></label>
+  </div>
+  <div class="form-check form-check-inline" style="margin:1em">
+    <input class="form-check-input" type="radio" name="consent" id="inlineRadio2" value="no">
+    <label class="form-check-label" for="inlineRadio2">I <u>do not</u> consent</label>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

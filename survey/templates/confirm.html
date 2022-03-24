@@ -1,0 +1,23 @@
+{% extends "base_optout.html" %}
+{% block content %}
+{% load static %}
+<h2>Confirmation</u></h2>
+
+<script type="text/javascript">var prefix = '{{prefix}}';</script>
+{% include "knocknock.html" %}
+<script type="text/javascript">if(!(Lockr.get("starttime", false))){Lockr.set("starttime", Date.now());}</script>
+<div id="centered-buttons">
+	<input type="button" id="reset_btn" onclick="confirmReset('{% autoescape off %}{{scenario}}{% endautoescape %}')" value="Retry" style="display:none;">
+    <input type="button" id="cancel_btn" onclick="confirm_cancel()" value="Cancel" style="display:inline-block;">
+	<input type="button" id="next_btn" onclick="confirm_confirm('{% autoescape off %}{{knockcode}}{% endautoescape %}', '{% autoescape off %}{{scenario}}{% endautoescape %}')" value="Confirm" style="display:inline-block;" disabled="true">
+    <input type="button" id="continue_confirm_btn" onclick="confirm_continue()" value="Continue" style="display:none;">
+</div>
+<form id="resultForm" action="/" method="post">{% csrf_token %}
+  <input type="hidden" id="code" name="code">
+  <input type="hidden" id="time" name="time">
+  <input type="hidden" id="confirmed" name="confirmed">
+  <input type="hidden" id="taps" name="taps">
+</form>
+<script type="text/javascript">document.getElementById("next_btn").scrollIntoView(false);</script>
+<script type="text/javascript">window.onload = confirm_check_confirmation('{% autoescape off %}{{knockcode}}{% endautoescape %}');</script>
+{% endblock %}

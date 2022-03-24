@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% load static %}
+
+<h1 class="text-danger"> Survey Error </h1>
+
+<p>
+  You appear to be taking this survey using a <u>desktop computer or tablet</u>.
+  <strong>This survey is only available for completion on a smartphone mobile device</strong>.
+</p>
+
+<p>
+  It is recommended that you open
+  <br>
+  <br>
+  {{urlWithoutStartcode}}
+  <br>
+  <br>
+  in the browser on your mobile device{% if startcode %} and enter startcode <span id="startcode">{{startcode}}</span>{% endif %},  or simply scan the following
+  QR code with your phone's camera:
+<div id="qrcode"></div>
+<script src="{% static 'survey/qrcode.min.js' %}"></script>
+<script>new QRCode(document.getElementById("qrcode"), {text:"{{urlWithStartcode}}",width:128,height:128});</script>
+<p>
+
+    If you have already accepted the HIT and do not have a mobile device
+    available to complete the survey, <strong>please return the HIT</strong> so
+    that others can complete the work.
+</p>
+<script>
+var  startcode = document.getElementById("startcode");
+ if(startcode){
+     startcode.style.color = "#EE0000";
+     var text = startcode.innerHTML;
+     var newtext = '';
+     for(var i=0; i < 8; i++){
+	 newtext += '<span';
+	 if(i>=6){
+	     newtext += ' style="color:#00C000"';
+	 }
+	 newtext += '>'+text.charAt(i)+'</span>';
+     }
+     startcode.innerHTML=newtext;
+ }
+</script>                                
+
+{% endblock %}
+

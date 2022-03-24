@@ -1,0 +1,22 @@
+{% extends "base_optout.html" %}
+{% block content %}
+<h2> Please Answer the following questions/prompts.</h2>
+
+<form action="/" method="post">{% csrf_token %}
+  <p> Select your agreement/disagreement with the following statements
+    <ol>
+      <li> {% include "radio.html" with field=form.secure %} </li>
+      <li> {% include "radio.html" with field=form.pin %} </li>
+      <li> {% include "radio.html" with field=form.password %} </li>
+      <li> {% include "radio.html" with field=form.pattern %} </li>
+    </ol>
+  </p>
+
+  <p> Provide general feedback to the following questions </p>
+  <ol start="5">
+    <li> {% include "textarea.html" with field=form.likes %} </li>
+    <li> {% include "textarea.html" with field=form.dislikes %} </li>
+  </ol>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
